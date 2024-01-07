@@ -1,0 +1,39 @@
+# example variants file
+
+# list all template files. These will be processed by the go template engine in the given order.
+templates:
+  - file.tmpl
+  - exec.sh.tmpl
+
+# hash or based on matrix values
+# TODO how to handle transits?
+pattern: "%Count_%Material"
+
+# variant matrix (Map of Key to Sequence of Values)
+matrix:
+  Count:
+    - 13
+    - 15
+  Material:
+    - a
+    - b
+    - c
+
+# exclude some combinations (Sequence of all Key Value pairs)
+exclude:
+  - Count: 13
+    Material: a
+  - Count: 15
+    Material: b
+
+# include some combinations (Sequence of all Key Value pairs)
+include:
+  - Count: 13
+    Material: d
+
+# This file will produce 5 variants:
+# 13_b
+# 13_c
+# 15_a
+# 15_c
+# 13_d
